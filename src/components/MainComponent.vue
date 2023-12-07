@@ -1,4 +1,6 @@
 <script>
+import { handleFilter } from '../utils/handleFilter';
+import { getGoods } from '../api/todos';
 import FilterComponent from './FilterComponent.vue';
 import GoodsList from './GoodsList.vue';
 
@@ -14,6 +16,33 @@ export default {
   components: {
     'FilterComponent': FilterComponent,
     'GoodsList': GoodsList
+  },
+  mounted() {
+    getGoods()
+      .then(({ data }) => {
+        this.goods = data;
+        this.filteredGoods = data;
+
+        this.categories = data.reduce((arr, item) => {
+         if (!arr.includes(item.category)) {
+          arr.push(item.category);
+         }
+
+         return arr;
+        },[])
+      });
+  },
+  methods: {
+    filterGoods(event) {
+      const { name, value } = event.target;
+
+      this.selectedFilters[name] = value;
+
+      this.filteredGoods = handleFilter([...this.goods], value, this.selectedFilters);
+    },
+    handleResetFilter() {
+      this.filteredGoods = this.goods;
+    }
   },
 }
 </script>

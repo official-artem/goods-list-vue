@@ -1,13 +1,16 @@
-<script setup>
+<script>
+import HeaderComponent from './components/HeaderComponent.vue';
+import MainComponent from './components/MainComponent.vue';
+
+export default {
+  components: {
+    'HeaderComponent': HeaderComponent,
+    'MainComponent': MainComponent
+  }
+}
 </script>
 
 <template>
-  <div class="bg-gray-400">
-  </div>
+  <HeaderComponent />
+  <MainComponent />
 </template>
-
-<style scoped>
-.main {
-  background-color: black;
-}
-</style>

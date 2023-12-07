@@ -8,27 +8,31 @@ export default {
 </script>
 
 <template>
-  <div class="container text-center">
-    <TransitionGroup name="list" tag="div" class="goods--list--container">
+  <div class="wrapper px-10">
+    <TransitionGroup name="list" tag="div" class="goods--list--container place-items-center">
       <div 
         v-for="good of this.goods" 
         :key="good.id" 
-        class="card col-3" 
+        class="card border-[1rem] rounded-2xl	" 
         style="width: 18rem;"
       >
-        <img :src="good.image" class="card-img-top" alt="{{ good.title }}">
+
+        <img :src="good.image" class="w-full h-[15rem] object-contain" alt="{{ good.title }}">
 
         <div class="card-body">
-          <h5 class="card-title">{{ good.title }}</h5>
+          <h5 class="card-title mb-4 text-xl font-bold card__title">{{ good.title }}</h5>
 
           <p class="card-text">{{ good.description }}</p>
 
-          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <p class="text-lg mb-3 underline">{{ good.price }}$</p>
+          <div class="rating__wrapper flex justify-between">
+            <span>Rating: {{ good.rating.rate }}</span>
+            <span>Count: {{ good.rating.rate }}</span>
+          </div>
         </div>
       </div>
     </TransitionGroup>
   </div>
-  
 </template>
 
 <style scoped>
@@ -48,6 +52,13 @@ export default {
 
 .card {
   padding: 1rem;
+}
+
+.card__title {
+  height: 3rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .card-text {

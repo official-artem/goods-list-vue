@@ -1,4 +1,3 @@
-
 <template>
   <header class="header bg-gray-300">
     <h2 class="text-xl">Online Store</h2>
@@ -20,7 +19,6 @@
 </template>
 
 <style scoped>
-
 .header {
   padding: 0.5rem 1rem;
   display: flex;
@@ -62,4 +60,3 @@
   background-image: url('./icons/shopping-cart.svg');
 }
 </style>
-

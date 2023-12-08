@@ -1,11 +1,11 @@
 <script>
-import HeaderComponent from './components/HeaderComponent.vue';
-import MainComponent from './components/MainComponent.vue';
+import HeaderComponent from './components/HeaderComponent.vue'
+import MainComponent from './components/MainComponent.vue'
 
 export default {
   components: {
-    'HeaderComponent': HeaderComponent,
-    'MainComponent': MainComponent
+    HeaderComponent: HeaderComponent,
+    MainComponent: MainComponent
   }
 }
 </script>

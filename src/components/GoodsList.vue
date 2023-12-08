@@ -1,5 +1,5 @@
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex'
 export default {
   // props: {
   //   goods: Array,
@@ -11,14 +11,13 @@ export default {
 <template>
   <div class="wrapper px-10 pt-8">
     <TransitionGroup name="list" tag="div" class="goods--list--container place-items-center gap-4">
-      <div 
-        v-for="good of allFilteredGoods" 
-        :key="good.id" 
-        class="card border-[1rem] rounded-2xl	" 
-        style="width: 18rem;"
+      <div
+        v-for="good of allFilteredGoods"
+        :key="good.id"
+        class="card border-[1rem] rounded-2xl"
+        style="width: 18rem"
       >
-
-        <img :src="good.image" class="w-full h-[15rem] object-contain" alt="{{ good.title }}">
+        <img :src="good.image" class="w-full h-[15rem] object-contain" alt="{{ good.title }}" />
 
         <div class="card-body">
           <h5 class="card-title mb-4 text-xl font-bold card__title">{{ good.title }}</h5>
@@ -69,5 +68,4 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
 </style>

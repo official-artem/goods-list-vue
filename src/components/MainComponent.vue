@@ -1,15 +1,15 @@
 <script>
-import FilterComponent from './FilterComponent.vue';
-import GoodsList from './GoodsList.vue';
+import FilterComponent from './FilterComponent.vue'
+import GoodsList from './GoodsList.vue'
 import { mapActions } from 'vuex'
 
 export default {
   components: {
-    'FilterComponent': FilterComponent,
-    'GoodsList': GoodsList
+    FilterComponent: FilterComponent,
+    GoodsList: GoodsList
   },
   async mounted() {
-      this.fetchGoods();
+    this.fetchGoods()
   },
 
   methods: mapActions(['fetchGoods'])
@@ -24,7 +24,6 @@ export default {
       <FilterComponent />
 
       <GoodsList />
-
     </section>
   </main>
 </template>
@@ -33,5 +32,4 @@ export default {
 .main {
   padding: 2rem 0;
 }
-
 </style>

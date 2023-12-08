@@ -1,5 +1,5 @@
-import { client } from '../services/httpClient';
+import { client } from '../services/httpClient'
 
 export const getGoods = () => {
-  return client.get('/products');
+  return client.get('/products')
 }

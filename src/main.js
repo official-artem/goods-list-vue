@@ -1,14 +1,13 @@
-
-import { createApp } from 'vue';
+import { createApp } from 'vue'
 import App from './App.vue'
-import store from './store';
+import store from './store'
 
 // #region styles import
 
-import './styles/main.css';
-import './styles/reset.css';
+import './styles/main.css'
+import './styles/reset.css'
 // #endregion
-const app = createApp(App);
+const app = createApp(App)
 
 app.use(store)
 app.mount('#app')

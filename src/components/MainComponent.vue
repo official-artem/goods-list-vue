@@ -1,64 +1,30 @@
 <script>
-import { handleFilter } from '../utils/handleFilter';
-import { getGoods } from '../api/todos';
 import FilterComponent from './FilterComponent.vue';
 import GoodsList from './GoodsList.vue';
+import { mapActions } from 'vuex'
 
 export default {
-  data() {
-    return {
-      goods: [],
-      filteredGoods: [],
-      categories: [],
-      selectedFilters: {},
-    }
-  },
   components: {
     'FilterComponent': FilterComponent,
     'GoodsList': GoodsList
   },
-  mounted() {
-    getGoods()
-      .then(({ data }) => {
-        this.goods = data;
-        this.filteredGoods = data;
-
-        this.categories = data.reduce((arr, item) => {
-         if (!arr.includes(item.category)) {
-          arr.push(item.category);
-         }
-
-         return arr;
-        },[])
-      });
+  async mounted() {
+      this.fetchGoods();
   },
-  methods: {
-    filterGoods(event) {
-      const { name, value } = event.target;
 
-      this.selectedFilters[name] = value;
-
-      this.filteredGoods = handleFilter([...this.goods], value, this.selectedFilters);
-    },
-    handleResetFilter() {
-      this.filteredGoods = this.goods;
-    }
-  },
+  methods: mapActions(['fetchGoods'])
 }
 </script>
 
 <template>
   <main class="main">
     <section class="main__section">
-      <h1 class="main__title">Goods</h1>
+      <h1 class="text-5xl text-center font-bold mb-8">Goods</h1>
 
-      <FilterComponent 
-        @change="filterGoods($event)"
-        :categories="categories" 
-      />
-      <GoodsList 
-        :goods="filteredGoods" 
-      />
+      <FilterComponent />
+
+      <GoodsList />
+
     </section>
   </main>
 </template>
@@ -68,7 +34,4 @@ export default {
   padding: 2rem 0;
 }
 
-.main__title {
-  text-align: center;
-}
 </style>

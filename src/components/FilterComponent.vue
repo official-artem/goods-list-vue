@@ -1,4 +1,5 @@
 <script>
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -8,31 +9,33 @@ export default {
       price: {
         min: 0,
         max: 1000
-      }
+      },
     }
   },
-  props: {
-    categories: Array
-  },
-  emits: [
-    'handleFilter',
-  ]
+  computed: mapGetters(['allCategories', 'allFilteredGoods']),
+  methods: {
+    handleFilterGoods(event) {
+      const { name, value } = event.target;
+      this.$store.commit('updateSelectedFilters', { name, value })
+      this.$store.commit('handleFilterGoods');
+    },
+  }
 }
 </script>
 
 <template>
   <article class="filters">
     <form 
-      @submit.prevent="handleSubmit" 
-      @change="$emit('handleFilter')" 
+      @submit.prevent="SubmitEvent" 
+      @change="handleFilterGoods" 
       class="filters__form"
     >
-      <div class="top--wrapper">
-      <select name="category" class="form-select filters__select">
+      <div class="top--wrapper flex justify-between">
+      <select name="category" class="border-1 border-black">
         <option value="" disabled selected>Category</option>
         <option value="all">All</option>
         <option 
-          v-for="category, id of this.categories" 
+          v-for="category, id of allCategories" 
           :key="id" 
           :value="category"
         >{{ category }}</option>
@@ -56,12 +59,10 @@ export default {
         placeholder="Search a good"
         class="form-control filters__select"
       />
-
-      <button @click="$emit('handleFilter', 'reset')" type="reset" class="btn btn-primary">Reset</button>
     </div>
 
-    <div>
-      <label for="min-price" class="form-label">
+    <div class="flex justify-between gap-4">
+      <label for="min-price" class="w-[7rem]">
         Min Price: {{ price.min }}
       </label>
 
@@ -75,7 +76,7 @@ export default {
         id="min-price"
       >
 
-      <label for="max-price" class="form-label price-range">
+      <label for="max-price" class="price-range w-[8rem]">
         Max Price: {{ price.max }}
       </label>
 
@@ -98,7 +99,7 @@ export default {
 .filters {
   padding: 1rem 0;
   margin: 0 auto;
-  width: fit-content;
+  width: 40rem;
 }
 
 .filters__form {
@@ -106,11 +107,6 @@ export default {
   flex-direction: column;
   gap: 1rem;
 }
-.select--rating::after {
-  position: absolute;
-  content: '⭐';
-}
-
 .filters__select {
   width: max-content;
   display: inline;
@@ -118,11 +114,6 @@ export default {
 
 .price-range {
   text-align: center;
-}
-
-.top--wrapper {
-  display: flex;
-  gap: 1rem;
 }
 
 </style>

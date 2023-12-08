@@ -1,17 +1,18 @@
 <script>
+import { mapGetters } from 'vuex';
 export default {
-  props: {
-    goods: Array,
-    item: Number
-  },
+  // props: {
+  //   goods: Array,
+  // },
+  computed: mapGetters(['allFilteredGoods'])
 }
 </script>
 
 <template>
-  <div class="wrapper px-10">
-    <TransitionGroup name="list" tag="div" class="goods--list--container place-items-center">
+  <div class="wrapper px-10 pt-8">
+    <TransitionGroup name="list" tag="div" class="goods--list--container place-items-center gap-4">
       <div 
-        v-for="good of this.goods" 
+        v-for="good of allFilteredGoods" 
         :key="good.id" 
         class="card border-[1rem] rounded-2xl	" 
         style="width: 18rem;"
@@ -36,6 +37,7 @@ export default {
 </template>
 
 <style scoped>
+.list-move,
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
@@ -43,7 +45,7 @@ export default {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateY(30px);
 }
 .goods--list--container {
   display: grid;

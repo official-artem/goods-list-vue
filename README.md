@@ -1,4 +1,4 @@
-# goods-list
+# Goods List
 
 This project created with Vue 3.
 

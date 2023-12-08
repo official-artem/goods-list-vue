@@ -7,7 +7,7 @@ import store from './store'
 import './styles/main.css'
 import './styles/reset.css'
 // #endregion
-const app = createApp(App)
 
-app.use(store)
-app.mount('#app')
+createApp(App)
+  .use(store)
+  .mount('#app')

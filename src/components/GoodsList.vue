@@ -23,7 +23,7 @@ export default {
         <div class="card-body">
           <h5 class="card-title mb-4 text-xl font-bold card__title">{{ good.title }}</h5>
 
-          <p class="card-text">{{ good.description }}</p>
+          <p class="card-text max-w-[1fr]">{{ good.description }}</p>
 
           <p class="text-lg mb-3 underline">{{ good.price }}$</p>
           <div class="rating__wrapper flex justify-between">
@@ -64,7 +64,6 @@ export default {
 }
 
 .card-text {
-  max-width: 1fr;
   height: 3rem;
   white-space: nowrap;
   overflow: hidden;
